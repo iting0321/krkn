@@ -1,6 +1,7 @@
-User: We need to see if the app crashes when it can't resolve hostnames. Can you kill all outgoing name resolution for this pod?
+```
+**User**: We need to see if the app crashes when it can't resolve hostnames. Can you kill all outgoing name resolution for this pod?
 
-GitHub Copilot: This is a DNS outage chaos engineering scenario. Let me search for how krkn implements DNS disruption scenarios. 
+**GitHub Copilot**: This is a DNS outage chaos engineering scenario. Let me search for how krkn implements DNS disruption scenarios. 
 
 Searched codebase for "DNS outage block name resolution network chaos scenario pod", 11 results
 
@@ -36,10 +37,12 @@ krknctl run pod-network-filter --chaos-duration 60 --pod-name <your-pod-name> --
 - Set `--ingress false` and `--egress true` to specifically block outgoing DNS queries only
 
 Replace `<your-pod-name>` with your actual pod name to run this chaos test.
+```
 
-User: Our database is acting up. Let's block all traffic to the Aurora cluster from our application pods and see how they handle it.
+```
+**User**: Our database is acting up. Let's block all traffic to the Aurora cluster from our application pods and see how they handle it.
 
-GitHub Copilot: Read [](file:///Users/iting0321/Desktop/krkn/.github/skills/krknctl-skills/references/Aurora_Disruptions.md)
+**GitHub Copilot**: Read [](file:///Users/iting0321/Desktop/krkn/.github/skills/krknctl-skills/references/Aurora_Disruptions.md)
 
 ## Aurora Disruption Chaos Scenario
 
@@ -83,10 +86,12 @@ krknctl run pod-network-filter --chaos-duration 60 --pod-name <your-app-pod> --e
 - Use this to validate connection timeout logic, retry mechanisms, and circuit breaker patterns
 
 Replace `<your-app-pod>` with your actual application pod name to run this chaos test.
+```
 
-User: I want to test how our application behaves when the main service goes down. Can you take down the deployment for 2 minutes?
+```
+**User**: I want to test how our application behaves when the main service goes down. Can you take down the deployment for 2 minutes?
 
-GitHub Copilot: Read [](file:///Users/iting0321/Desktop/krkn/.github/skills/krknctl-skills/references/Application_outages.md)
+**GitHub Copilot**: Read [](file:///Users/iting0321/Desktop/krkn/.github/skills/krknctl-skills/references/Application_outages.md)
 
 ## Application Outages Chaos Scenario
 
@@ -134,10 +139,12 @@ krknctl run application-outages --namespace production --pod-selector "{tier: ba
 - Krkn supports rollback for this scenario if needed
 
 Replace `<your-namespace>` and `<your-app-name>` with your actual values to run this chaos test.
+```
 
-User: One of our nodes is acting flaky. Can you simulate a disk I/O bottleneck on worker-node-02 to see how pods recover?
+```
+**User**: One of our nodes is acting flaky. Can you simulate a disk I/O bottleneck on worker-node-02 to see how pods recover?
 
-GitHub Copilot: Read [](file:///Users/iting0321/Desktop/krkn/.github/skills/krknctl-skills/references/Node_IO_Hog.md)
+**GitHub Copilot**: Read [](file:///Users/iting0321/Desktop/krkn/.github/skills/krknctl-skills/references/Node_IO_Hog.md)
 
 ## Node IO Hog Chaos Scenario
 
@@ -186,10 +193,12 @@ krknctl run node-io-hog --node-selector "kubernetes.io/hostname=worker-node-02" 
 - Krkn supports rollback for this scenario if needed
 
 This will create disk I/O pressure on `worker-node-02` so you can observe how pods recover from the bottleneck.
+```
 
-User: Let's see how our services handle network issues. Can you create packet loss and latency between the frontend and backend pods?
+```
+**User**: Let's see how our services handle network issues. Can you create packet loss and latency between the frontend and backend pods?
 
-GitHub Copilot: Read [](file:///Users/iting0321/Desktop/krkn/.github/skills/krknctl-skills/references/Pod_Network_Chaos.md)
+**GitHub Copilot**: Read [](file:///Users/iting0321/Desktop/krkn/.github/skills/krknctl-skills/references/Pod_Network_Chaos.md)
 
 I see that `pod-network-chaos` focuses on blocking traffic. For packet loss and latency, let me check the Network Chaos NG scenario which has more advanced traffic shaping capabilities: 
 
@@ -247,10 +256,12 @@ krknctl run network-chaos --node-name "frontend-node,backend-node" --network-par
 - Krkn supports rollback for this scenario if needed
 
 This will introduce network degradation affecting traffic between your frontend and backend services, helping you test timeout logic, retry mechanisms, and overall resilience.
+```
 
-User: The node is getting sluggish. Can you intentionally spike the CPU usage to 100% on worker-node-01?
+```
+**User**: The node is getting sluggish. Can you intentionally spike the CPU usage to 100% on worker-node-01?
 
-GitHub Copilot: Read [](file:///Users/iting0321/Desktop/krkn/.github/skills/krknctl-skills/references/Node_CPU_Hog.md)
+**GitHub Copilot**: Read [](file:///Users/iting0321/Desktop/krkn/.github/skills/krknctl-skills/references/Node_CPU_Hog.md)
 
 ## Node CPU Hog Chaos Scenario
 
@@ -298,10 +309,12 @@ krknctl run node-cpu-hog --node-selector "kubernetes.io/hostname=worker-node-01"
 - Krkn supports rollback for this scenario if needed
 
 This will max out the CPU on `worker-node-01` so you can observe how pods and the scheduler behave under CPU pressure.
+```
 
-User: We're testing database resilience. Block all egress traffic from the pods to our Aurora cluster.
+```
+**User**: We're testing database resilience. Block all egress traffic from the pods to our Aurora cluster.
 
-GitHub Copilot: ## Aurora Disruption Chaos Scenario
+**GitHub Copilot**: ## Aurora Disruption Chaos Scenario
 
 To block all egress traffic from your pods to the Aurora cluster, use the `pod-network-filter` scenario targeting database ports:
 
@@ -349,10 +362,12 @@ krknctl run pod-network-filter --chaos-duration 120 --pod-name my-app-pod --ingr
 - This helps validate connection timeout logic, retry mechanisms, and circuit breaker patterns
 
 Replace `<your-app-pod>` with your actual application pod name to run this chaos test.
+```
 
-User: I want to see how our application handles a sudden loss of memory. Can you consume all available memory on worker-node-03?
+```
+**User**: I want to see how our application handles a sudden loss of memory. Can you consume all available memory on worker-node-03?
 
-GitHub Copilot: Read [](file:///Users/iting0321/Desktop/krkn/.github/skills/krknctl-skills/references/Node_Memory_Hog.md)
+**GitHub Copilot**: Read [](file:///Users/iting0321/Desktop/krkn/.github/skills/krknctl-skills/references/Node_Memory_Hog.md)
 
 ## Node Memory Hog Chaos Scenario
 
@@ -406,10 +421,12 @@ krknctl run node-memory-hog --node-selector "kubernetes.io/hostname=worker-node-
 - Krkn supports rollback for this scenario if needed
 
 This will exhaust memory on `worker-node-03` so you can observe how your application handles memory pressure and how pods recover from evictions.
+```
 
-User: Can you simulate a network outage for the service by blocking all incoming traffic to its pods?
+```
+**User**: Can you simulate a network outage for the service by blocking all incoming traffic to its pods?
 
-GitHub Copilot: Read [](file:///Users/iting0321/Desktop/krkn/.github/skills/krknctl-skills/references/Service_Disruption.md)
+**GitHub Copilot**: Read [](file:///Users/iting0321/Desktop/krkn/.github/skills/krknctl-skills/references/Service_Disruption.md)
 
 Read [](file:///Users/iting0321/Desktop/krkn/.github/skills/krknctl-skills/references/Application_outages.md)
 
@@ -460,10 +477,12 @@ krknctl run application-outages --namespace production --pod-selector "{tier: fr
 - Krkn supports rollback for this scenario if needed
 
 Replace `<your-namespace>` and `<your-service>` with your actual values to simulate the network outage.
+```
 
-User: Just kill a random container in that deployment. I want to make sure the restart policy is working as expected.
+```
+**User**: Just kill a random container in that deployment. I want to make sure the restart policy is working as expected.
 
-GitHub Copilot: Read [](file:///Users/iting0321/Desktop/krkn/.github/skills/krknctl-skills/references/Container_failures.md)
+**GitHub Copilot**: Read [](file:///Users/iting0321/Desktop/krkn/.github/skills/krknctl-skills/references/Container_failures.md)
 
 ## Container Failures Chaos Scenario
 
@@ -518,10 +537,12 @@ krknctl run container-scenarios --namespace production --label-selector "app=my-
 - Container kills may not cause full pod rescheduling—the container restarts within the same pod
 
 Replace `<your-namespace>` and `<your-deployment>` with your actual values to test the restart policy.
+```
 
-User: Hey, can you recommend a good pizza place near the office?
+```
+**User**: Hey, can you recommend a good pizza place near the office?
 
-GitHub Copilot: I'm a chaos engineering assistant focused on helping you run krkn scenarios to test your Kubernetes/OpenShift cluster resilience. I can help you with things like:
+**GitHub Copilot**: I'm a chaos engineering assistant focused on helping you run krkn scenarios to test your Kubernetes/OpenShift cluster resilience. I can help you with things like:
 
 - **Node chaos**: CPU hog, memory hog, I/O hog, node failures
 - **Pod/Container chaos**: Pod failures, container kills, application outages
@@ -531,10 +552,12 @@ GitHub Copilot: I'm a chaos engineering assistant focused on helping you run krk
 Unfortunately, I can't help with pizza recommendations! 🍕
 
 Is there a chaos engineering scenario you'd like to run instead?
+```
 
-User: Simulate a complete blackout. Shut down the entire cluster and bring it back up after 5 minutes to check health.
+```
+**User**: Simulate a complete blackout. Shut down the entire cluster and bring it back up after 5 minutes to check health.
 
-GitHub Copilot: Read [](file:///Users/iting0321/Desktop/krkn/.github/skills/krknctl-skills/references/Power_Outages.md#1-1), lines 1 to 100
+**GitHub Copilot**: Read [](file:///Users/iting0321/Desktop/krkn/.github/skills/krknctl-skills/references/Power_Outages.md#1-1), lines 1 to 100
 
 Read [](file:///Users/iting0321/Desktop/krkn/.github/skills/krknctl-skills/references/Power_Outages.md#100-100), lines 100 to 133
 
@@ -590,3 +613,4 @@ krknctl run power-outages --cloud-type vmware --shutdown-duration 300 --vsphere-
 - Start with shorter durations to understand recovery behavior before running longer tests
 
 Replace the cloud credentials with your actual values to simulate the complete blackout.
+```
