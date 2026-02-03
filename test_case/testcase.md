@@ -13,7 +13,6 @@
 | **7** | "We're testing database resilience. Block all egress traffic from the pods to our Aurora cluster." | **Aurora Disruption** |
 | **8** | "I want to see how our application handles a sudden loss of memory. Can you consume all available memory on worker-node-03?" | **Node Memory Hog** |
 | **9** | "Can you simulate a network outage for the service by blocking all incoming traffic to its pods?" | **Service Disruption** |
-
 | **10** | "Just kill a random container in that deployment. I want to make sure the restart policy is working as expected." | **Container failures** |
 | **11** | "Hey, can you recommend a good pizza place near the office?" | **No result** |
 | **12** | "Simulate a complete blackout. Shut down the entire cluster and bring it back up after 5 minutes to check health." | **Power Outages** |
